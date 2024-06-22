@@ -13,9 +13,9 @@ public enum TipoContratoEnum {
     private final String tipo;
     private final String tipoAbreviado;
 
-    TipoContratoEnum(String tipo, String tipoMatricula) {
+    TipoContratoEnum(String tipo, String tipoAbreviado) {
         this.tipo = tipo;
-        this.tipoAbreviado = tipoMatricula;
+        this.tipoAbreviado = tipoAbreviado;
     }
 
     public String getTipoAbreviado() {

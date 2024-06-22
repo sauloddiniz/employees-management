@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/branch/1"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{ \"id\": 1, \"nome\": \"Empresa Casas Bahia\", \"cnpj\": \"12.345.678/0001-99\", \"cidade\": \"Coronel Fabriciano\", \"uf\": \"MG\", \"tipo\": \"Pessoa Jurídica\",\"ativo\": true, \"dataCadastro\": \"2023-03-09\", \"ultimaAtualizacao\": \"2023-03-09\" }"
+  }
+}

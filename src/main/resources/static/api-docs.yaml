@@ -1,0 +1,250 @@
+openapi: 3.0.3
+info:
+  title: Employees Management
+  description: |-
+    Este projeto é destinado para fins educacionais e para a avaliação de conhecimentos técnicos. Ele apresenta a implementação completa de um CRUD (Criação, Leitura, Atualização e Exclusão) para a entidade de Vendedor, tendo em vista a aderência às melhores práticas de programação. Além disso, a aplicação incorpora regras de negócios específicas relacionadas à gestão de Vendedores para garantir um funcionamento realista.
+  contact:
+    email: sauloddiniz@gmail.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+servers:
+  - url: http://localhost:8080
+tags:
+  - name: seller
+    description: Vendedores
+paths:
+  /branch/{branchId}/seller:
+    post:
+      tags:
+        - seller
+      operationId: saveSeller
+      summary: Cria um novo vendedor e salva no banco de dados
+      description: Este endpoint é responsável por adicionar um novo vendedor ao sistema. Para executar com sucesso, ele requer que exista uma filial válida na API externa, já que a identificação dessa filial é um dos dados necessários para a criação do vendedor. Caso contrário, a operação falhará e um erro apropriado será retornado.
+      parameters:
+        - in: path
+          name: branchId
+          description: Identificador da filial
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SellerRequestDto'
+      responses:
+        201:
+          description: criado com sucesso
+          headers:
+            Location:
+              description: URL de localização do vendedor
+              schema:
+                type: string
+        400:
+          description: Solicitação com dados inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        500:
+          description: Erro interno no servidor
+  /branch/{branchId}/seller/{matricula}:
+    get:
+      tags:
+        - seller
+      operationId: getSeller
+      summary: Obtem um vendedor
+      description: Este endpoint é responsável por obter um vendedor ao sistema. Para executar com sucesso, ele requer que exista um vendedor válido.
+      parameters:
+        - in: path
+          name: branchId
+          description: Identificador da filial
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: matricula
+          description: Identificador do vendedor
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Vendedor obtido com sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SellerResponseDto'
+          headers:
+            Location:
+              description: URL de localização do vendedor
+              schema:
+                type: string
+        404:
+          description: Vendedor não encontrado
+        500:
+          description: Erro interno no servidor
+    put:
+      tags:
+        - seller
+      operationId: updateSeller
+      summary: Atualiza um vendedor
+      description:  Este endpoint é responsável pela atualização dos detalhes de um vendedor no sistema. Para a execução bem-sucedida deste endpoint, é necessário que o vendedor exista no sistema e seja válido. **Nota Importante** Se o tipo de contrato do vendedor for alterado durante esta atualização, o valor da matrícula será consequentemente ajustado.
+      parameters:
+        - in: path
+          name: branchId
+          description: Identificador da filial
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: matricula
+          description: Identificador do vendedor
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SellerRequestDto'
+      responses:
+        204:
+          description: Vendedor atualizado com sucesso
+        404:
+          description: Vendedor não encontrado
+        500:
+          description: Erro interno no servidor
+    delete:
+      tags:
+        - seller
+      operationId: deleteSeller
+      summary: Remove o registro do vendedor
+      description: Este endpoint é responsável pela remoção do registro do vendedor.
+      parameters:
+        - in: path
+          name: branchId
+          description: Identificador da filial
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: matricula
+          description: Identificador do vendedor
+          required: true
+          schema:
+            type: string
+      responses:
+        204:
+          description: Vendedor removido com sucesso
+        404:
+          description: Vendedor não encontrado
+        500:
+          description: Erro interno no servidor
+
+components:
+  schemas:
+    SellerRequestDto:
+      type: object
+      properties:
+        nome:
+          type: string
+          example: Bruce Wayne
+        dataNascimento:
+          type: string
+          format: date
+        cpfOuCnpj:
+          type: string
+          example: 123.456.789-10
+        email:
+          type: string
+          format: email
+        tipoContrato:
+          type: string
+          enum:
+            - Outsourcing
+            - Clt
+            - Pessoa Jurídica
+      required:
+        - nome
+        - cpfOuCnpj
+        - email
+        - tipoContrato
+    SellerResponseDto:
+      type: object
+      properties:
+        matricula:
+          type: string
+          example: 1-PJ
+        nome:
+          type: string
+          example: Bruce Wayne
+        dataNascimento:
+          type: string
+          format: date
+        cpfOuCnpj:
+          type: string
+          example: 123.456.789-10
+        email:
+          type: string
+          format: email
+        tipoContrato:
+          type: string
+          enum:
+            - Outsourcing
+            - Clt
+            - Pessoa Jurídica
+        filial:
+          $ref: '#/components/schemas/Filial'
+    Filial:
+      type: object
+      properties:
+        id:
+          type: number
+          example: 1
+        nome:
+          type: string
+          example: Casas Bahia
+        cnpj:
+          type: string
+          example: 12.345.678/0001-99
+        cidade:
+          type: string
+          example: Coronel Fabriciano
+        uf:
+          type: string
+          example: MG
+        tipo:
+          type: string
+          enum:
+            - Outsourcing
+            - Clt
+            - Pessoa Jurídica
+        ativo:
+          type: boolean
+        dataCadastro:
+          type: string
+          format: date
+        ultimaAtualizacao:
+          type: string
+          format: date
+    ErrorResponse:
+      type: object
+      properties:
+        date:
+          type: string
+          example: Mon May 13 10:59:34 UTC 2000
+        status:
+          type: integer
+          example: 400
+        path:
+          type: string
+          example: /branch
+        message:
+          type: string
+          example: Mensagem de erro
+        method:
+          type: string
+          example: POST

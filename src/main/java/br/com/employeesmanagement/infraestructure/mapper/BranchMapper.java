@@ -1,4 +1,4 @@
-package br.com.employeesmanagement.infraestructure.persistence.mapper;
+package br.com.employeesmanagement.infraestructure.mapper;
 
 import br.com.employeesmanagement.domain.enums.TipoContratoEnum;
 import br.com.employeesmanagement.domain.model.Branch;

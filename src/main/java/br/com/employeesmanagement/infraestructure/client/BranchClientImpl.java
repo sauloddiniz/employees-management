@@ -2,7 +2,7 @@ package br.com.employeesmanagement.infraestructure.client;
 
 import br.com.employeesmanagement.domain.gateway.BranchClient;
 import br.com.employeesmanagement.domain.model.Branch;
-import br.com.employeesmanagement.infraestructure.persistence.mapper.BranchMapper;
+import br.com.employeesmanagement.infraestructure.mapper.BranchMapper;
 import br.com.employeesmanagement.infraestructure.dto.BranchResponseDto;
 import br.com.employeesmanagement.infraestructure.exception.BranchNotFoundException;
 import org.springframework.stereotype.Service;

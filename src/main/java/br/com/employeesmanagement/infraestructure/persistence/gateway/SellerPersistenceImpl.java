@@ -4,7 +4,7 @@ import br.com.employeesmanagement.domain.gateway.SellerPersistence;
 import br.com.employeesmanagement.domain.model.Seller;
 import br.com.employeesmanagement.infraestructure.persistence.entity.SellerEntity;
 import br.com.employeesmanagement.infraestructure.persistence.repository.SellerRepository;
-import br.com.employeesmanagement.infraestructure.persistence.mapper.SellerMapper;
+import br.com.employeesmanagement.infraestructure.mapper.SellerMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

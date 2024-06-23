@@ -8,7 +8,7 @@ import br.com.employeesmanagement.domain.usecase.seller.SaveSeller;
 import br.com.employeesmanagement.domain.usecase.seller.UpdateSeller;
 import br.com.employeesmanagement.infraestructure.dto.SellerResponseDto;
 import br.com.employeesmanagement.infraestructure.dto.SellerRequestDto;
-import br.com.employeesmanagement.infraestructure.persistence.mapper.SellerMapper;
+import br.com.employeesmanagement.infraestructure.mapper.SellerMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;

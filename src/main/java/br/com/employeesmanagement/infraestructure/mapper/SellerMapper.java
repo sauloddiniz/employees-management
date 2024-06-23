@@ -1,4 +1,4 @@
-package br.com.employeesmanagement.infraestructure.persistence.mapper;
+package br.com.employeesmanagement.infraestructure.mapper;
 
 import br.com.employeesmanagement.domain.model.Seller;
 import br.com.employeesmanagement.domain.model.validators.DocumentValidator;

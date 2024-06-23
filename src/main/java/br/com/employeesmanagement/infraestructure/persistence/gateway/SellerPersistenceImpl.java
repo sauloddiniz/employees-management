@@ -4,7 +4,7 @@ import br.com.employeesmanagement.domain.gateway.SellerPersistence;
 import br.com.employeesmanagement.domain.model.Seller;
 import br.com.employeesmanagement.infraestructure.persistence.entity.SellerEntity;
 import br.com.employeesmanagement.infraestructure.persistence.repository.SellerRepository;
-import br.com.employeesmanagement.infraestructure.persistence.wraper.SellerWrapper;
+import br.com.employeesmanagement.infraestructure.persistence.mapper.SellerMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -20,18 +20,18 @@ public class SellerPersistenceImpl implements SellerPersistence {
     @Override
     public Seller save(Seller seller) {
         SellerEntity sellerEntity =
-                sellerRepository.save(SellerWrapper.toEntity(seller));
-        return SellerWrapper.fromEntity(sellerEntity);
+                sellerRepository.save(SellerMapper.toEntity(seller));
+        return SellerMapper.fromEntity(sellerEntity);
     }
 
     @Override
     public Optional<Seller> findByMatricula(String matricula) {
         return sellerRepository.findByMatricula(matricula)
-                .map(SellerWrapper::fromEntity);
+                .map(SellerMapper::fromEntity);
     }
 
     @Override
     public void remove(Seller seller) {
-        sellerRepository.delete(SellerWrapper.toEntity(seller));
+        sellerRepository.delete(SellerMapper.toEntity(seller));
     }
 }

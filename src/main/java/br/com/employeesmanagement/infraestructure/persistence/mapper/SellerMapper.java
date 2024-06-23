@@ -1,4 +1,4 @@
-package br.com.employeesmanagement.infraestructure.persistence.wraper;
+package br.com.employeesmanagement.infraestructure.persistence.mapper;
 
 import br.com.employeesmanagement.domain.model.Seller;
 import br.com.employeesmanagement.domain.model.validators.DocumentValidator;
@@ -8,8 +8,8 @@ import br.com.employeesmanagement.infraestructure.persistence.entity.SellerEntit
 
 import java.util.Optional;
 
-public class SellerWrapper {
-    private SellerWrapper() {
+public class SellerMapper {
+    private SellerMapper() {
     }
 
     public static SellerEntity toEntity(Seller seller) {

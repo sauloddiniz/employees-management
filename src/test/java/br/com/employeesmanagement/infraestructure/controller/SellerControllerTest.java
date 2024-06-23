@@ -71,6 +71,8 @@ class SellerControllerTest {
                 .andExpect(
                         header().exists("Location"))
                 .andExpect(
+                        header().string("Location", "http://localhost/branch/1/seller/1-PJ"))
+                .andExpect(
                         status().isCreated())
                 .andDo(print());
     }

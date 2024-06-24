@@ -44,10 +44,9 @@ public enum TipoContratoEnum {
     }
 
     private static String normalizeString(String input) {
-        String normalizedInput = Normalizer.normalize(input, Normalizer.Form.NFD)
+        return Normalizer.normalize(input, Normalizer.Form.NFD)
                 .replaceAll(NON_ASCII_REGEX, REPLACEMENT)
                 .toLowerCase();
-        return normalizedInput;
     }
 
     private static boolean isNotNullOrNotEmpty(String input) {

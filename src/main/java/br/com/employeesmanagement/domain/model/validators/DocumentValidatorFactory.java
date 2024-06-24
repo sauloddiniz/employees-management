@@ -5,6 +5,9 @@ import br.com.employeesmanagement.domain.model.validators.impl.CnpjValidator;
 import br.com.employeesmanagement.domain.model.validators.impl.CpfValidator;
 
 public class DocumentValidatorFactory {
+
+    public static final String DOT_SLASH_HYPHEN_REGEX = "[\\.\\-/]";
+
     public static DocumentValidator createValidator(String cpfOuCnpj) {
         final String cpfOuCnpjSemCharEspeciais = removePontosHifensBarras(cpfOuCnpj);
         return isIndividualCpf(cpfOuCnpjSemCharEspeciais) ? new CpfValidator() : new CnpjValidator();
@@ -14,7 +17,7 @@ public class DocumentValidatorFactory {
         if (isNotEmptOrNotNull(value)) {
             throw new CpfOrCnpjInvalidException("CPF ou CNPJ não pode ser vazio");
         }
-        return value.replaceAll("[\\.\\-/]", "");
+        return value.replaceAll(DOT_SLASH_HYPHEN_REGEX, "");
     }
 
     private static boolean isNotEmptOrNotNull(String value) {

@@ -14,13 +14,13 @@ public class DocumentValidatorFactory {
     }
 
     private static String removePontosHifensBarras(String value) {
-        if (isNotEmptOrNotNull(value)) {
+        if (isNotEmptyOrNotNull(value)) {
             throw new CpfOrCnpjInvalidException("CPF ou CNPJ não pode ser vazio");
         }
         return value.replaceAll(DOT_SLASH_HYPHEN_REGEX, "");
     }
 
-    private static boolean isNotEmptOrNotNull(String value) {
+    private static boolean isNotEmptyOrNotNull(String value) {
         return value == null || value.isEmpty();
     }
 

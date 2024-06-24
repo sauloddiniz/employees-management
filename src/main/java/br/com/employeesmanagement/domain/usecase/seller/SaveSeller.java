@@ -13,15 +13,23 @@ public class SaveSeller {
         this.getBranch = getBranch;
     }
     public Seller execute(Long branchId, Seller seller) {
-        Branch branch = getBranch.execute(branchId);
-        seller.setFilal(branch);
+        assignBranchToSeller(branchId, seller);
         seller = sellerPersistence.save(seller);
-        seller.createMatricula();
+        createSellerMatricula(seller);
         return sellerPersistence.save(seller);
     }
 
-    public Seller execute(Seller seller) {
+    public void execute(Seller seller) {
+        createSellerMatricula(seller);
+        sellerPersistence.save(seller);
+    }
+
+    private static void createSellerMatricula(Seller seller) {
         seller.createMatricula();
-        return sellerPersistence.save(seller);
+    }
+
+    private void assignBranchToSeller(Long branchId, Seller seller) {
+        Branch branch = getBranch.execute(branchId);
+        seller.setFilal(branch);
     }
 }

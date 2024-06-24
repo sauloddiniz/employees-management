@@ -12,10 +12,10 @@ public class UpdateSeller {
         this.saveSeller = saveSeller;
     }
 
-    public Seller execute(Long branchId, String matricula, Seller seller) {
+    public void execute(Long branchId, String matricula, Seller seller) {
         Seller sellerForUpdate = getSeller.execute(branchId, matricula);
         updateSeller(sellerForUpdate, seller);
-        return saveSeller.execute(sellerForUpdate);
+        saveSeller.execute(sellerForUpdate);
     }
 
     private void updateSeller(Seller sellerForUpdate, Seller seller) {

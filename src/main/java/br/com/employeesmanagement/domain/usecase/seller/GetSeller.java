@@ -25,7 +25,7 @@ public class GetSeller {
     }
 
     private Optional<Seller> validBranch(Branch branch, Seller sellerFound) {
-        if (isSellerBranchNotNull(sellerFound) && isSellerBranchIdEqualsBranchId(branch, sellerFound)) {
+        if (isSellerBranchNotNullAndIdMatches(branch, sellerFound)) {
             sellerFound.setFilal(branch);
             return Optional.of(sellerFound);
         } else {
@@ -33,12 +33,8 @@ public class GetSeller {
         }
     }
 
-    private static boolean isSellerBranchIdEqualsBranchId(Branch branch, Seller sellerFound) {
-        return sellerFound.getFilal().getId().equals(branch.getId());
-    }
-
-    private static boolean isSellerBranchNotNull(Seller sellerFound) {
-        return sellerFound.getFilal() != null;
+    private static boolean isSellerBranchNotNullAndIdMatches(Branch branch, Seller sellerFound) {
+        return sellerFound.getFilal() != null && sellerFound.getFilal().getId().equals(branch.getId());
     }
 
 

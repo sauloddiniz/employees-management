@@ -8,6 +8,7 @@ import br.com.employeesmanagement.domain.exception.TipoContratoException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -93,14 +94,14 @@ public class DefaultExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @Builder
-    @Getter
+    @Value
     private static class ErrorResponse {
         @Builder.Default
-        private Instant timestamp = Instant.now();
-        private String message;
-        private Integer httpStatus;
-        private String path;
-        private String method;
-        private String detail;
+        Instant timestamp = Instant.now();
+        String message;
+        Integer httpStatus;
+        String path;
+        String method;
+        String detail;
     }
 }

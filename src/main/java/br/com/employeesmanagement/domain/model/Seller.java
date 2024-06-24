@@ -51,14 +51,8 @@ public class Seller {
                         .concat(this.tipoContrato.getTipoAbreviado());
     }
 
-    private void validaNome(String nome) {
-        if (nome == null || nome.isEmpty()) {
-            throw new SellerBadRequestException("Nome não pode ser vazio");
-        }
-    }
-
     private LocalDate validaFormatoData(String dataNascimento) {
-        if (dataNascimento != null && !dataNascimento.isEmpty()) {
+        if (IsNotNullOrNotEmpy(dataNascimento)) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             try {
                 return LocalDate.parse(dataNascimento, formatter);
@@ -70,23 +64,24 @@ public class Seller {
     }
 
     private void validaCnpjParaTipoDeContratoPessoaJuridica(String cpfOuCnpj, TipoContratoEnum tipoContrato) {
-        if (tipoContrato.equals(TipoContratoEnum.PESSOA_JURIDICA) && cpfOuCnpj.length() < 14) {
+        if (isContratoPessoaJuridica(tipoContrato) && isIndividualCpf(cpfOuCnpj)) {
             throw new SellerBadRequestException("Tipo de contrato não pode ser CPF");
         }
     }
 
     private TipoContratoEnum validaContrato(String tipoContrato) {
-        if (tipoContrato == null || tipoContrato.isEmpty()) {
+        if (isNullOrEmpty(tipoContrato)) {
             throw new SellerBadRequestException("Tipo de contrato não pode ser vazio");
         }
         return TipoContratoEnum.fromString(tipoContrato);
     }
 
     private void validaEmail(String email) {
-        if (email == null || email.isEmpty()) {
+        if (isNullOrEmpty(email)) {
             throw new SellerBadRequestException("Email não pode ser vazio");
         }
-        if (Boolean.FALSE.equals(isValidEmail(email))) {
+        boolean isEmailInvalid = !isValidEmail(email);
+        if (isEmailInvalid) {
             throw new SellerBadRequestException("Email deve ser valido");
         }
     }
@@ -94,6 +89,27 @@ public class Seller {
     private boolean isValidEmail(String email) {
         Pattern pattern = Pattern.compile(EMAIL_REGEX);
         return pattern.matcher(email).matches();
+    }
+
+    private void validaNome(String nome) {
+        if (isNullOrEmpty(nome)) {
+            throw new SellerBadRequestException("Nome não pode ser vazio");
+        }
+    }
+    private static boolean isNullOrEmpty(String nome) {
+        return nome == null || nome.isEmpty();
+    }
+
+    private static boolean isIndividualCpf(String cpfOuCnpj) {
+        return cpfOuCnpj.length() < 14;
+    }
+
+    private static boolean IsNotNullOrNotEmpy(String dataNascimento) {
+        return dataNascimento != null && !dataNascimento.isEmpty();
+    }
+
+    private static boolean isContratoPessoaJuridica(TipoContratoEnum tipoContrato) {
+        return tipoContrato.equals(TipoContratoEnum.PESSOA_JURIDICA);
     }
 
     public String getId() {

@@ -28,22 +28,29 @@ public enum TipoContratoEnum {
 
     public static TipoContratoEnum fromString(String input) {
 
-        if (input == null || input.isEmpty()) {
+        if (isNotNullOrNotEmpty(input)) {
             throw new TipoContratoException("Tipo contrato não existente");
         }
 
-        String normalizedInput = Normalizer.normalize(input, Normalizer.Form.NFD)
-                .replaceAll(NON_ASCII_REGEX, REPLACEMENT)
-                .toLowerCase();
+        String normalizedInput = normalizeString(input);
 
         for (TipoContratoEnum tipoContrato : TipoContratoEnum.values()) {
-            String normalizedCode = Normalizer.normalize(tipoContrato.tipo, Normalizer.Form.NFD)
-                    .replaceAll(NON_ASCII_REGEX, REPLACEMENT)
-                    .toLowerCase();
+            String normalizedCode = normalizeString(tipoContrato.tipo);
             if (normalizedCode.equals(normalizedInput)) {
                 return tipoContrato;
             }
         }
         throw new TipoContratoException("Tipo contrato não existente");
+    }
+
+    private static String normalizeString(String input) {
+        String normalizedInput = Normalizer.normalize(input, Normalizer.Form.NFD)
+                .replaceAll(NON_ASCII_REGEX, REPLACEMENT)
+                .toLowerCase();
+        return normalizedInput;
+    }
+
+    private static boolean isNotNullOrNotEmpty(String input) {
+        return input == null || input.isEmpty();
     }
 }

@@ -1,7 +1,7 @@
 package br.com.employeesmanagement.infraestructure.mapper;
 
 import br.com.employeesmanagement.domain.model.Seller;
-import br.com.employeesmanagement.domain.model.validators.DocumentValidator;
+import br.com.employeesmanagement.domain.model.validators.impl.CpfCnpjValidator;
 import br.com.employeesmanagement.infraestructure.dto.SellerResponseDto;
 import br.com.employeesmanagement.infraestructure.dto.SellerRequestDto;
 import br.com.employeesmanagement.infraestructure.persistence.entity.SellerEntity;
@@ -31,7 +31,7 @@ public class SellerMapper {
                 sellerEntity.getTipoContrato(), sellerEntity.getFilialId());
     }
 
-    public static Seller fromDto(DocumentValidator documentValidator, SellerRequestDto requestDto) {
+    public static Seller fromDto(CpfCnpjValidator documentValidator, SellerRequestDto requestDto) {
         return new Seller(documentValidator, requestDto.nome(), requestDto.dataNascimento(), requestDto.cpfOuCnpj(),
                 requestDto.email(), requestDto.tipoContrato());
 

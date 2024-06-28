@@ -1,9 +1,8 @@
 package br.com.employeesmanagement.domain.model.validators.impl;
 
 import br.com.employeesmanagement.domain.exception.CpfOrCnpjInvalidException;
-import br.com.employeesmanagement.domain.model.validators.DocumentValidator;
 
-public class CpfValidator implements DocumentValidator {
+public final class CpfValidator implements CpfCnpjValidator {
     @Override
     public String valid(String cpf) {
         cpf = cpf.replaceAll("[^\\d]", "");

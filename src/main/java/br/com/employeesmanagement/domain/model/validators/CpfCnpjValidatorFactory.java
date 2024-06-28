@@ -3,12 +3,13 @@ package br.com.employeesmanagement.domain.model.validators;
 import br.com.employeesmanagement.domain.exception.CpfOrCnpjInvalidException;
 import br.com.employeesmanagement.domain.model.validators.impl.CnpjValidator;
 import br.com.employeesmanagement.domain.model.validators.impl.CpfValidator;
+import br.com.employeesmanagement.domain.model.validators.impl.CpfCnpjValidator;
 
-public class DocumentValidatorFactory {
+public class CpfCnpjValidatorFactory {
 
     public static final String DOT_SLASH_HYPHEN_REGEX = "[\\.\\-/]";
 
-    public static DocumentValidator createValidator(String cpfOuCnpj) {
+    public static CpfCnpjValidator createValidator(String cpfOuCnpj) {
         final String cpfOuCnpjSemCharEspeciais = removePontosHifensBarras(cpfOuCnpj);
         return isIndividualCpf(cpfOuCnpjSemCharEspeciais) ? new CpfValidator() : new CnpjValidator();
     }

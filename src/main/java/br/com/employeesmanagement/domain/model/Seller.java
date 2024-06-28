@@ -1,6 +1,6 @@
 package br.com.employeesmanagement.domain.model;
 
-import br.com.employeesmanagement.domain.model.validators.DocumentValidator;
+import br.com.employeesmanagement.domain.model.validators.impl.CpfCnpjValidator;
 import br.com.employeesmanagement.domain.enums.TipoContratoEnum;
 import br.com.employeesmanagement.domain.exception.SellerBadRequestException;
 
@@ -19,9 +19,9 @@ public class Seller {
     private String email;
     private TipoContratoEnum tipoContrato;
     private Branch filal;
-    private DocumentValidator documentValidator;
+    private CpfCnpjValidator documentValidator;
 
-    public Seller(DocumentValidator documentValidator, String nome, String dataNascimento, String cpfOuCnpj, String email, String tipoContrato) {
+    public Seller(CpfCnpjValidator documentValidator, String nome, String dataNascimento, String cpfOuCnpj, String email, String tipoContrato) {
         this.documentValidator = documentValidator;
         validaNome(nome);
         this.nome = nome;
@@ -96,8 +96,8 @@ public class Seller {
             throw new SellerBadRequestException("Nome não pode ser vazio");
         }
     }
-    private static boolean isNullOrEmpty(String nome) {
-        return nome == null || nome.isEmpty();
+    private static boolean isNullOrEmpty(String value) {
+        return value == null || value.isEmpty();
     }
 
     private static boolean isIndividualCpf(String cpfOuCnpj) {

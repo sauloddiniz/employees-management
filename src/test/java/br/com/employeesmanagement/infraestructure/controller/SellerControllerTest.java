@@ -1,8 +1,7 @@
 package br.com.employeesmanagement.infraestructure.controller;
 
 import br.com.employeesmanagement.domain.enums.TipoContratoEnum;
-import br.com.employeesmanagement.domain.model.validators.DocumentValidator;
-import br.com.employeesmanagement.domain.model.validators.DocumentValidatorFactory;
+import br.com.employeesmanagement.domain.model.validators.CpfCnpjValidatorFactory;
 import br.com.employeesmanagement.infraestructure.client.BranchClientRequest;
 import br.com.employeesmanagement.infraestructure.dto.BranchResponseDto;
 import br.com.employeesmanagement.infraestructure.persistence.entity.SellerEntity;
@@ -41,7 +40,7 @@ class SellerControllerTest {
     private BranchClientRequest branchClientRequest;
 
     @SpyBean
-    private DocumentValidatorFactory documentValidatorFactory;
+    private CpfCnpjValidatorFactory documentValidatorFactory;
 
     @SpyBean
     private SellerRepository sellerRepository;

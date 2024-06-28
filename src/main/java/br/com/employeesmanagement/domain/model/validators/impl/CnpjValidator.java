@@ -1,11 +1,10 @@
 package br.com.employeesmanagement.domain.model.validators.impl;
 
 import br.com.employeesmanagement.domain.exception.CpfOrCnpjInvalidException;
-import br.com.employeesmanagement.domain.model.validators.DocumentValidator;
 
 import java.util.InputMismatchException;
 
-public class CnpjValidator implements DocumentValidator {
+public final class CnpjValidator implements CpfCnpjValidator {
     @Override
     public String valid(String CNPJ) {
         CNPJ = CNPJ.replaceAll("[^\\d]", "");

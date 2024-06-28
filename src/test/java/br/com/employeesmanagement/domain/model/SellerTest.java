@@ -3,7 +3,7 @@ package br.com.employeesmanagement.domain.model;
 import br.com.employeesmanagement.domain.enums.TipoContratoEnum;
 import br.com.employeesmanagement.domain.exception.CpfOrCnpjInvalidException;
 import br.com.employeesmanagement.domain.exception.SellerBadRequestException;
-import br.com.employeesmanagement.domain.model.validators.DocumentValidatorFactory;
+import br.com.employeesmanagement.domain.model.validators.CpfCnpjValidatorFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -32,7 +32,7 @@ class SellerTest {
         final String tipoContrato = "Clt";
 
         try {
-            new Seller(DocumentValidatorFactory.createValidator(cpfOuCnpj), nome, dataNascimento, cpfOuCnpj, email, tipoContrato);
+            new Seller(CpfCnpjValidatorFactory.createValidator(cpfOuCnpj), nome, dataNascimento, cpfOuCnpj, email, tipoContrato);
             fail();
         } catch (Exception exception) {
             assertEquals(SellerBadRequestException.class, exception.getClass());
@@ -53,7 +53,7 @@ class SellerTest {
         final String tipoContrato = "Clt";
 
         try {
-            new Seller(DocumentValidatorFactory.createValidator(cpfOuCnpj), nome, dataNascimento, cpfOuCnpj, email, tipoContrato);
+            new Seller(CpfCnpjValidatorFactory.createValidator(cpfOuCnpj), nome, dataNascimento, cpfOuCnpj, email, tipoContrato);
             fail();
         } catch (Exception exception) {
             assertEquals(SellerBadRequestException.class, exception.getClass());
@@ -72,7 +72,7 @@ class SellerTest {
         final String email = "brucewayne@batman.com";
         final String tipoContrato = "Clt";
 
-        Seller seller = new Seller(DocumentValidatorFactory.createValidator(cpfOuCnpj), nome, dataNascimento, cpfOuCnpj, email, tipoContrato);
+        Seller seller = new Seller(CpfCnpjValidatorFactory.createValidator(cpfOuCnpj), nome, dataNascimento, cpfOuCnpj, email, tipoContrato);
 
         assertNull(seller.getDataNascimento());
     }
@@ -90,7 +90,7 @@ class SellerTest {
         final String tipoContrato = "Clt";
 
         try {
-            new Seller(DocumentValidatorFactory.createValidator(cpfOuCnpj), nome, dataNascimento, cpfOuCnpj, email, tipoContrato);
+            new Seller(CpfCnpjValidatorFactory.createValidator(cpfOuCnpj), nome, dataNascimento, cpfOuCnpj, email, tipoContrato);
             fail();
         } catch (Exception exception) {
             assertEquals(CpfOrCnpjInvalidException.class, exception.getClass());
@@ -111,7 +111,7 @@ class SellerTest {
         final String tipoContrato = "Clt";
 
         try {
-            new Seller(DocumentValidatorFactory.createValidator(cpf), nome, dataNascimento, cpf, email, tipoContrato);
+            new Seller(CpfCnpjValidatorFactory.createValidator(cpf), nome, dataNascimento, cpf, email, tipoContrato);
             fail();
         } catch (Exception exception) {
             assertEquals(CpfOrCnpjInvalidException.class, exception.getClass());
@@ -132,7 +132,7 @@ class SellerTest {
         final String tipoContrato = "Clt";
 
         try {
-            new Seller(DocumentValidatorFactory.createValidator(cnpj), nome, dataNascimento, cnpj, email, tipoContrato);
+            new Seller(CpfCnpjValidatorFactory.createValidator(cnpj), nome, dataNascimento, cnpj, email, tipoContrato);
             fail();
         } catch (Exception exception) {
             assertEquals(CpfOrCnpjInvalidException.class, exception.getClass());
@@ -153,7 +153,7 @@ class SellerTest {
         final String tipoContrato = "Clt";
 
         try {
-            new Seller(DocumentValidatorFactory.createValidator(cpfOuCnpj), nome, dataNascimento, cpfOuCnpj, email, tipoContrato);
+            new Seller(CpfCnpjValidatorFactory.createValidator(cpfOuCnpj), nome, dataNascimento, cpfOuCnpj, email, tipoContrato);
             fail();
         } catch (Exception exception) {
             assertEquals(SellerBadRequestException.class, exception.getClass());
@@ -175,7 +175,7 @@ class SellerTest {
 
 
         try {
-            new Seller(DocumentValidatorFactory.createValidator(cpfOuCnpj), nome, dataNascimento, cpfOuCnpj, email, tipoContrato);
+            new Seller(CpfCnpjValidatorFactory.createValidator(cpfOuCnpj), nome, dataNascimento, cpfOuCnpj, email, tipoContrato);
             fail();
         } catch (Exception exception) {
             assertEquals(SellerBadRequestException.class, exception.getClass());
@@ -196,7 +196,7 @@ class SellerTest {
         final String tipoContrato = "Clt";
 
         try {
-            new Seller(DocumentValidatorFactory.createValidator(cpfOuCnpj), nome, dataNascimento, cpfOuCnpj, email, tipoContrato);
+            new Seller(CpfCnpjValidatorFactory.createValidator(cpfOuCnpj), nome, dataNascimento, cpfOuCnpj, email, tipoContrato);
             fail();
         } catch (Exception exception) {
             assertEquals(SellerBadRequestException.class, exception.getClass());
@@ -217,7 +217,7 @@ class SellerTest {
         final String tipoContrato = "Pessoa Juridica";
 
         try {
-            new Seller(DocumentValidatorFactory.createValidator(cpfOuCnpj), nome, dataNascimento, cpfOuCnpj, email, tipoContrato);
+            new Seller(CpfCnpjValidatorFactory.createValidator(cpfOuCnpj), nome, dataNascimento, cpfOuCnpj, email, tipoContrato);
             fail();
         } catch (Exception exception) {
             assertEquals(SellerBadRequestException.class, exception.getClass());
@@ -239,7 +239,7 @@ class SellerTest {
         final String dataNascimento = "1986-02-07";
         final String tipoContrato = "clt";
 
-        Seller seller = new Seller(DocumentValidatorFactory.createValidator(cpfOuCnpj), nome, dataNascimento, cpfOuCnpj, email, tipoContrato);
+        Seller seller = new Seller(CpfCnpjValidatorFactory.createValidator(cpfOuCnpj), nome, dataNascimento, cpfOuCnpj, email, tipoContrato);
 
         assertEquals(expectedTipoContrato, seller.getTipoContrato());
         assertEquals(expectedCpf, seller.getCpfOuCnpj());
@@ -260,7 +260,7 @@ class SellerTest {
         final String dataNascimento = "1986-02-07";
         final String tipoContrato = "Pessoa juridica";
 
-        Seller seller = new Seller(DocumentValidatorFactory.createValidator(cpfOuCnpj), nome, dataNascimento, cpfOuCnpj, email, tipoContrato);
+        Seller seller = new Seller(CpfCnpjValidatorFactory.createValidator(cpfOuCnpj), nome, dataNascimento, cpfOuCnpj, email, tipoContrato);
 
         assertEquals(expectedTipoContrato, seller.getTipoContrato());
         assertEquals(expectedCpf, seller.getCpfOuCnpj());
@@ -281,7 +281,7 @@ class SellerTest {
         final String dataNascimento = "1986-02-07";
         final String tipoContrato = "outsourcing";
 
-        Seller seller = new Seller(DocumentValidatorFactory.createValidator(cpfOuCnpj), nome, dataNascimento, cpfOuCnpj, email, tipoContrato);
+        Seller seller = new Seller(CpfCnpjValidatorFactory.createValidator(cpfOuCnpj), nome, dataNascimento, cpfOuCnpj, email, tipoContrato);
 
         assertEquals(expectedTipoContrato, seller.getTipoContrato());
         assertEquals(expectedCpf, seller.getCpfOuCnpj());

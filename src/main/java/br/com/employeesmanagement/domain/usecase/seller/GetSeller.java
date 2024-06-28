@@ -1,10 +1,15 @@
 package br.com.employeesmanagement.domain.usecase.seller;
 
 import br.com.employeesmanagement.domain.exception.SellerNotFoundException;
+import br.com.employeesmanagement.domain.gateway.BranchClient;
 import br.com.employeesmanagement.domain.gateway.SellerPersistence;
 import br.com.employeesmanagement.domain.model.Branch;
 import br.com.employeesmanagement.domain.model.Seller;
 import br.com.employeesmanagement.domain.usecase.branch.GetBranch;
+import br.com.employeesmanagement.infraestructure.client.BranchClientImpl;
+import br.com.employeesmanagement.infraestructure.client.BranchClientRequest;
+import br.com.employeesmanagement.infraestructure.dto.BranchResponseDto;
+import org.springframework.http.ResponseEntity;
 
 import java.util.Optional;
 public class GetSeller {

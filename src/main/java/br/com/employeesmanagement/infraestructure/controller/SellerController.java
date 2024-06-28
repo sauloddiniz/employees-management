@@ -1,7 +1,7 @@
 package br.com.employeesmanagement.infraestructure.controller;
 
 import br.com.employeesmanagement.domain.model.Seller;
-import br.com.employeesmanagement.domain.model.validators.DocumentValidatorFactory;
+import br.com.employeesmanagement.domain.model.validators.CpfCnpjValidatorFactory;
 import br.com.employeesmanagement.domain.usecase.seller.GetSeller;
 import br.com.employeesmanagement.domain.usecase.seller.RemoveSeller;
 import br.com.employeesmanagement.domain.usecase.seller.SaveSeller;
@@ -34,7 +34,7 @@ public class SellerController {
                                                   @RequestBody SellerRequestDto requestDto) {
 
         Seller seller = SellerMapper
-                .fromDto(DocumentValidatorFactory.createValidator(requestDto.cpfOuCnpj()), requestDto);
+                .fromDto(CpfCnpjValidatorFactory.createValidator(requestDto.cpfOuCnpj()), requestDto);
 
         seller = saveSeller.execute(branchId, seller);
 
@@ -61,7 +61,7 @@ public class SellerController {
                                                     @RequestBody SellerRequestDto requestDto) {
 
         Seller seller = SellerMapper
-                .fromDto(DocumentValidatorFactory.createValidator(requestDto.cpfOuCnpj()), requestDto);
+                .fromDto(CpfCnpjValidatorFactory.createValidator(requestDto.cpfOuCnpj()), requestDto);
 
         updateSeller.execute(branchId, matricula, seller);
 
